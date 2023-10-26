@@ -1,9 +1,11 @@
-import { Module } from '@nestjs/common';
-import { UserService } from './user.service';
-import { UserController } from './user.controller';
-import { ConfigModule } from '@nestjs/config';
-import { TypegooseModule } from 'nestjs-typegoose';
-import { UserModel } from './user.model';
+import { Module } from "@nestjs/common";
+import { UserService } from "./user.service";
+import { UserController } from "./user.controller";
+import { ConfigModule } from "@nestjs/config";
+import { TypegooseModule } from "nestjs-typegoose";
+import { UserModel } from "./user.model";
+import { ProductService } from "src/product/product.service";
+import { ProductModule } from "src/product/product.module";
 
 @Module({
   providers: [UserService],
@@ -13,11 +15,12 @@ import { UserModel } from './user.model';
       {
         typegooseClass: UserModel,
         schemaOptions: {
-          collection: 'User'
-        }
-      }
+          collection: "User",
+        },
+      },
     ]),
     ConfigModule,
-  ]
+    ProductModule,
+  ],
 })
 export class UserModule {}

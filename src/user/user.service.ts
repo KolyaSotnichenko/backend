@@ -6,19 +6,21 @@ import { UpdateUserDto } from "./dto/update-user.dto";
 import { UserModel } from "./user.model";
 import { CronExpression, SchedulerRegistry } from "@nestjs/schedule";
 import { CronJob } from "cron";
+import { ProductService } from "src/product/product.service";
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectModel(UserModel) private readonly UserModel: ModelType<UserModel>,
-    private scheduler: SchedulerRegistry
+    private scheduler: SchedulerRegistry,
+    private readonly productService: ProductService
   ) {}
 
   private banned: UserModel;
   private banRemoved: UserModel;
 
   async byId(_id: string) {
-    const user = await this.UserModel.findById(_id);
+    const user = await this.UserModel.findById(_id).populate("products").exec();
     if (!user) throw new NotFoundException("User not found!");
 
     return user;
@@ -67,7 +69,29 @@ export class UserService {
       .sort({
         createdAt: "desc",
       })
+      .populate("products")
       .exec();
+  }
+
+  async addProductsToUser(
+    _id: string,
+    productIds: string[]
+  ): Promise<UserModel> {
+    const user = await this.UserModel.findById(_id);
+
+    if (!user) {
+      throw new Error("Пользователь не найден");
+    }
+
+    const productsToAdd = await Promise.all(
+      productIds.map((productId) => this.productService.byId(productId))
+    );
+    user.products = user.products
+      ? [...user.products, ...productsToAdd]
+      : productsToAdd;
+    await user.save();
+
+    return user;
   }
 
   async delete(id: string) {

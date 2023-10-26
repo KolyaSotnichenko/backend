@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserModel = void 0;
 const typegoose_1 = require("@typegoose/typegoose");
 const defaultClasses_1 = require("@typegoose/typegoose/lib/defaultClasses");
+const product_model_1 = require("../product/product.model");
 class UserModel extends defaultClasses_1.TimeStamps {
 }
 __decorate([
@@ -31,7 +32,7 @@ __decorate([
     __metadata("design:type", Boolean)
 ], UserModel.prototype, "isActive", void 0);
 __decorate([
-    (0, typegoose_1.prop)({ default: [] }),
+    (0, typegoose_1.prop)({ ref: () => product_model_1.ProductModel }),
     __metadata("design:type", Array)
 ], UserModel.prototype, "products", void 0);
 exports.UserModel = UserModel;

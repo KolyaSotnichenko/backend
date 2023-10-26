@@ -35,6 +35,23 @@ export class UserController {
   }
 
   @UsePipes(new ValidationPipe())
+  @Put("profile/add-products")
+  @HttpCode(200)
+  @Auth()
+  async addProductsToUser(
+    @User("_id") _id: string,
+    @Body() body: { productIds: string[] }
+  ) {
+    const { productIds } = body;
+
+    if (!Array.isArray(productIds)) {
+      throw new Error("Неверный формат идентификаторов продуктов");
+    }
+
+    return this.userService.addProductsToUser(_id, productIds);
+  }
+
+  @UsePipes(new ValidationPipe())
   @Put(":id")
   @HttpCode(200)
   @Auth("admin")

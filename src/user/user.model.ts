@@ -1,5 +1,7 @@
-import { prop } from "@typegoose/typegoose";
+import { Ref, prop } from "@typegoose/typegoose";
 import { Base, TimeStamps } from "@typegoose/typegoose/lib/defaultClasses";
+import { Product } from "src/payments/payments.interface";
+import { ProductModel } from "src/product/product.model";
 
 export interface UserModel extends Base {}
 
@@ -16,6 +18,6 @@ export class UserModel extends TimeStamps {
   @prop({ required: true, default: true })
   isActive: boolean;
 
-  @prop({ default: [] })
-  products?: [];
+  @prop({ ref: () => ProductModel })
+  products?: Ref<ProductModel>[];
 }

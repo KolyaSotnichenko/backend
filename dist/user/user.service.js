@@ -19,13 +19,15 @@ const nestjs_typegoose_1 = require("nestjs-typegoose");
 const user_model_1 = require("./user.model");
 const schedule_1 = require("@nestjs/schedule");
 const cron_1 = require("cron");
+const product_service_1 = require("../product/product.service");
 let UserService = class UserService {
-    constructor(UserModel, scheduler) {
+    constructor(UserModel, scheduler, productService) {
         this.UserModel = UserModel;
         this.scheduler = scheduler;
+        this.productService = productService;
     }
     async byId(_id) {
-        const user = await this.UserModel.findById(_id);
+        const user = await this.UserModel.findById(_id).populate("products").exec();
         if (!user)
             throw new common_1.NotFoundException("User not found!");
         return user;
@@ -64,7 +66,20 @@ let UserService = class UserService {
             .sort({
             createdAt: "desc",
         })
+            .populate("products")
             .exec();
+    }
+    async addProductsToUser(_id, productIds) {
+        const user = await this.UserModel.findById(_id);
+        if (!user) {
+            throw new Error("Пользователь не найден");
+        }
+        const productsToAdd = await Promise.all(productIds.map((productId) => this.productService.byId(productId)));
+        user.products = user.products
+            ? [...user.products, ...productsToAdd]
+            : productsToAdd;
+        await user.save();
+        return user;
     }
     async delete(id) {
         return this.UserModel.findByIdAndDelete(id).exec();
@@ -94,7 +109,8 @@ let UserService = class UserService {
 UserService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, nestjs_typegoose_1.InjectModel)(user_model_1.UserModel)),
-    __metadata("design:paramtypes", [Object, schedule_1.SchedulerRegistry])
+    __metadata("design:paramtypes", [Object, schedule_1.SchedulerRegistry,
+        product_service_1.ProductService])
 ], UserService);
 exports.UserService = UserService;
 //# sourceMappingURL=user.service.js.map

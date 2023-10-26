@@ -27,10 +27,12 @@ import { ModelType } from "@typegoose/typegoose/lib/types";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { UserModel } from "./user.model";
 import { SchedulerRegistry } from "@nestjs/schedule";
+import { ProductService } from "src/product/product.service";
 export declare class UserService {
     private readonly UserModel;
     private scheduler;
-    constructor(UserModel: ModelType<UserModel>, scheduler: SchedulerRegistry);
+    private readonly productService;
+    constructor(UserModel: ModelType<UserModel>, scheduler: SchedulerRegistry, productService: ProductService);
     private banned;
     private banRemoved;
     byId(_id: string): Promise<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, import("@typegoose/typegoose/lib/types").DocumentType<UserModel, import("@typegoose/typegoose/lib/types").BeAnObject>> & Omit<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, UserModel> & UserModel & Required<{
@@ -38,9 +40,10 @@ export declare class UserService {
     }> & import("@typegoose/typegoose/lib/types").IObjectWithTypegooseFunction, never>>;
     updateProfile(_id: string, dto: UpdateUserDto): Promise<void>;
     getCount(): Promise<number>;
-    getAll(searchTerm?: string): Promise<(import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, import("@typegoose/typegoose/lib/types").DocumentType<UserModel, import("@typegoose/typegoose/lib/types").BeAnObject>> & Omit<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, UserModel> & UserModel & Required<{
+    getAll(searchTerm?: string): Promise<Omit<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, import("@typegoose/typegoose/lib/types").DocumentType<UserModel, import("@typegoose/typegoose/lib/types").BeAnObject>> & Omit<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, UserModel> & UserModel & Required<{
         _id: import("mongoose").Types.ObjectId;
-    }> & import("@typegoose/typegoose/lib/types").IObjectWithTypegooseFunction, never>)[]>;
+    }> & import("@typegoose/typegoose/lib/types").IObjectWithTypegooseFunction, never>, never>[]>;
+    addProductsToUser(_id: string, productIds: string[]): Promise<UserModel>;
     delete(id: string): Promise<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, import("@typegoose/typegoose/lib/types").DocumentType<UserModel, import("@typegoose/typegoose/lib/types").BeAnObject>> & Omit<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, UserModel> & UserModel & Required<{
         _id: import("mongoose").Types.ObjectId;
     }> & import("@typegoose/typegoose/lib/types").IObjectWithTypegooseFunction, never>>;

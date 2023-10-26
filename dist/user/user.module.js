@@ -13,6 +13,7 @@ const user_controller_1 = require("./user.controller");
 const config_1 = require("@nestjs/config");
 const nestjs_typegoose_1 = require("nestjs-typegoose");
 const user_model_1 = require("./user.model");
+const product_module_1 = require("../product/product.module");
 let UserModule = class UserModule {
 };
 UserModule = __decorate([
@@ -24,12 +25,13 @@ UserModule = __decorate([
                 {
                     typegooseClass: user_model_1.UserModel,
                     schemaOptions: {
-                        collection: 'User'
-                    }
-                }
+                        collection: "User",
+                    },
+                },
             ]),
             config_1.ConfigModule,
-        ]
+            product_module_1.ProductModule,
+        ],
     })
 ], UserModule);
 exports.UserModule = UserModule;
