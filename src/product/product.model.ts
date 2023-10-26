@@ -15,13 +15,4 @@ export class ProductModel extends TimeStamps {
 
   @prop()
   price: string;
-
-  @prop({ default: false })
-  isSubscription: boolean;
-
-  @prop()
-  startAt?: string;
-
-  @prop()
-  endAt?: string;
 }

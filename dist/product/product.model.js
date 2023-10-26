@@ -30,17 +30,5 @@ __decorate([
     (0, typegoose_1.prop)(),
     __metadata("design:type", String)
 ], ProductModel.prototype, "price", void 0);
-__decorate([
-    (0, typegoose_1.prop)({ default: false }),
-    __metadata("design:type", Boolean)
-], ProductModel.prototype, "isSubscription", void 0);
-__decorate([
-    (0, typegoose_1.prop)(),
-    __metadata("design:type", String)
-], ProductModel.prototype, "startAt", void 0);
-__decorate([
-    (0, typegoose_1.prop)(),
-    __metadata("design:type", String)
-], ProductModel.prototype, "endAt", void 0);
 exports.ProductModel = ProductModel;
 //# sourceMappingURL=product.model.js.map

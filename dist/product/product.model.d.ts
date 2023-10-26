@@ -6,7 +6,4 @@ export declare class ProductModel extends TimeStamps {
     description: string;
     image: string;
     price: string;
-    isSubscription: boolean;
-    startAt?: string;
-    endAt?: string;
 }
