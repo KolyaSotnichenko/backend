@@ -23,7 +23,15 @@ let SubscriptionService = class SubscriptionService {
     async create(dto) {
         const startDate = new Date();
         const endDate = new Date();
-        endDate.setMonth(endDate.getMonth() + 1);
+        if (dto.period === "1 month") {
+            endDate.setMonth(endDate.getMonth() + 1);
+        }
+        if (dto.period === "3 month") {
+            endDate.setMonth(endDate.getMonth() + 3);
+        }
+        if (dto.period === "1 year") {
+            endDate.setFullYear(endDate.getFullYear() + 1);
+        }
         const subscription = new this.SubscriptionProductModel(Object.assign(Object.assign({}, dto), { startDate,
             endDate }));
         await subscription.save();

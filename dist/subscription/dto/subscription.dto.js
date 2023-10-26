@@ -29,5 +29,9 @@ __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", Number)
 ], CreateSubscriptionDto.prototype, "price", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateSubscriptionDto.prototype, "period", void 0);
 exports.CreateSubscriptionDto = CreateSubscriptionDto;
 //# sourceMappingURL=subscription.dto.js.map

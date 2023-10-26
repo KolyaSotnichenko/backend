@@ -12,4 +12,7 @@ export class CreateSubscriptionDto {
 
   @IsString()
   price: number;
+
+  @IsString()
+  period: string;
 }

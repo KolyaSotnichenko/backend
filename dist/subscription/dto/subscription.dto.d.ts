@@ -3,4 +3,5 @@ export declare class CreateSubscriptionDto {
     description: string;
     image: string;
     price: number;
+    period: string;
 }
