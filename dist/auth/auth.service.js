@@ -30,10 +30,10 @@ let AuthService = class AuthService {
     }
     async getNewTokens({ refreshToken }) {
         if (!refreshToken)
-            throw new common_1.UnauthorizedException('Please sign in!');
+            throw new common_1.UnauthorizedException("Please sign in!");
         const result = await this.jwtService.verifyAsync(refreshToken);
         if (!result)
-            throw new common_1.UnauthorizedException('Invalid token or expired!');
+            throw new common_1.UnauthorizedException("Invalid token or expired!");
         const user = await this.UserModel.findById(result._id);
         const tokens = await this.issueTokenPair(String(user._id));
         return Object.assign({ user: this.returnUserFields(user) }, tokens);
@@ -41,11 +41,11 @@ let AuthService = class AuthService {
     async register(dto) {
         const oldUser = await this.UserModel.findOne({ email: dto.email });
         if (oldUser)
-            throw new common_1.BadRequestException('User with this email is alredy in the system!');
+            throw new common_1.BadRequestException("User with this email is already in the system!");
         const salt = await (0, bcryptjs_1.genSalt)(10);
         const newUser = new this.UserModel({
             email: dto.email,
-            password: await (0, bcryptjs_1.hash)(dto.password, salt)
+            password: await (0, bcryptjs_1.hash)(dto.password, salt),
         });
         const user = await newUser.save();
         const tokens = await this.issueTokenPair(String(user._id));
@@ -54,19 +54,19 @@ let AuthService = class AuthService {
     async validateUser(dto) {
         const user = await this.UserModel.findOne({ email: dto.email });
         if (!user)
-            throw new common_1.UnauthorizedException('user not found!');
+            throw new common_1.UnauthorizedException("user not found!");
         const isValidPassword = await (0, bcryptjs_1.compare)(dto.password, user.password);
         if (!isValidPassword)
-            throw new common_1.UnauthorizedException('Invalid password!');
+            throw new common_1.UnauthorizedException("Invalid password!");
         return user;
     }
     async issueTokenPair(userId) {
         const data = { _id: userId };
         const refreshToken = await this.jwtService.signAsync(data, {
-            expiresIn: '15d'
+            expiresIn: "15d",
         });
         const accessToken = await this.jwtService.signAsync(data, {
-            expiresIn: '1h'
+            expiresIn: "1h",
         });
         return { refreshToken, accessToken };
     }
@@ -74,7 +74,7 @@ let AuthService = class AuthService {
         return {
             _id: user._id,
             email: user.email,
-            isAdmin: user.isAdmin
+            isAdmin: user.isAdmin,
         };
     }
 };

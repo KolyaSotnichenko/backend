@@ -6,6 +6,5 @@ export declare class UserModel extends TimeStamps {
     password: string;
     isAdmin?: boolean;
     isActive: boolean;
-    subscription?: [];
     products?: [];
 }

@@ -7,6 +7,8 @@ import { getMongoDbConfig } from "./config/mongo.config";
 import { AuthModule } from "./auth/auth.module";
 import { UserModule } from "./user/user.module";
 import { ScheduleModule } from "@nestjs/schedule";
+import { PaymentsModule } from './payments/payments.module';
+import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [
@@ -19,6 +21,8 @@ import { ScheduleModule } from "@nestjs/schedule";
     AuthModule,
     UserModule,
     ScheduleModule.forRoot(),
+    PaymentsModule,
+    ProductModule,
   ],
   controllers: [AppController],
   providers: [AppService],

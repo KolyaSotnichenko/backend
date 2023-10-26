@@ -16,6 +16,8 @@ const mongo_config_1 = require("./config/mongo.config");
 const auth_module_1 = require("./auth/auth.module");
 const user_module_1 = require("./user/user.module");
 const schedule_1 = require("@nestjs/schedule");
+const payments_module_1 = require("./payments/payments.module");
+const product_module_1 = require("./product/product.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -30,6 +32,8 @@ AppModule = __decorate([
             auth_module_1.AuthModule,
             user_module_1.UserModule,
             schedule_1.ScheduleModule.forRoot(),
+            payments_module_1.PaymentsModule,
+            product_module_1.ProductModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

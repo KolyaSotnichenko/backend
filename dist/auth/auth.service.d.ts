@@ -23,11 +23,11 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
-import { ModelType } from '@typegoose/typegoose/lib/types';
-import { UserModel } from 'src/user/user.model';
-import { AuthDto } from './dto/auth.dto';
-import { JwtService } from '@nestjs/jwt';
-import { RefreshTokenDto } from './dto/refreshToken.dto';
+import { ModelType } from "@typegoose/typegoose/lib/types";
+import { UserModel } from "src/user/user.model";
+import { AuthDto } from "./dto/auth.dto";
+import { JwtService } from "@nestjs/jwt";
+import { RefreshTokenDto } from "./dto/refreshToken.dto";
 export declare class AuthService {
     private readonly UserModel;
     private readonly jwtService;

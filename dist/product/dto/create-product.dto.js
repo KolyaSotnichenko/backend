@@ -9,30 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserModel = void 0;
-const typegoose_1 = require("@typegoose/typegoose");
-const defaultClasses_1 = require("@typegoose/typegoose/lib/defaultClasses");
-class UserModel extends defaultClasses_1.TimeStamps {
+exports.CreateProductDto = void 0;
+const class_validator_1 = require("class-validator");
+class CreateProductDto {
 }
 __decorate([
-    (0, typegoose_1.prop)({ unique: true }),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], UserModel.prototype, "email", void 0);
+], CreateProductDto.prototype, "title", void 0);
 __decorate([
-    (0, typegoose_1.prop)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], UserModel.prototype, "password", void 0);
+], CreateProductDto.prototype, "description", void 0);
 __decorate([
-    (0, typegoose_1.prop)({ default: false }),
-    __metadata("design:type", Boolean)
-], UserModel.prototype, "isAdmin", void 0);
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateProductDto.prototype, "image", void 0);
 __decorate([
-    (0, typegoose_1.prop)({ required: true, default: true }),
-    __metadata("design:type", Boolean)
-], UserModel.prototype, "isActive", void 0);
-__decorate([
-    (0, typegoose_1.prop)({ default: [] }),
-    __metadata("design:type", Array)
-], UserModel.prototype, "products", void 0);
-exports.UserModel = UserModel;
-//# sourceMappingURL=user.model.js.map
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", Number)
+], CreateProductDto.prototype, "price", void 0);
+exports.CreateProductDto = CreateProductDto;
+//# sourceMappingURL=create-product.dto.js.map

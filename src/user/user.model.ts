@@ -17,8 +17,5 @@ export class UserModel extends TimeStamps {
   isActive: boolean;
 
   @prop({ default: [] })
-  subscription?: [];
-
-  @prop({ default: [] })
   products?: [];
 }
