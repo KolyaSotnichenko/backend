@@ -13,6 +13,7 @@ exports.UserModel = void 0;
 const typegoose_1 = require("@typegoose/typegoose");
 const defaultClasses_1 = require("@typegoose/typegoose/lib/defaultClasses");
 const product_model_1 = require("../product/product.model");
+const subscription_model_1 = require("../subscription/subscription.model");
 class UserModel extends defaultClasses_1.TimeStamps {
 }
 __decorate([
@@ -35,5 +36,9 @@ __decorate([
     (0, typegoose_1.prop)({ ref: () => product_model_1.ProductModel }),
     __metadata("design:type", Array)
 ], UserModel.prototype, "products", void 0);
+__decorate([
+    (0, typegoose_1.prop)({ ref: () => subscription_model_1.SubscriptionProductModel }),
+    __metadata("design:type", Array)
+], UserModel.prototype, "subscriptions", void 0);
 exports.UserModel = UserModel;
 //# sourceMappingURL=user.model.js.map

@@ -6,6 +6,7 @@ import { TypegooseModule } from "nestjs-typegoose";
 import { UserModel } from "./user.model";
 import { ProductService } from "src/product/product.service";
 import { ProductModule } from "src/product/product.module";
+import { SubscriptionModule } from "src/subscription/subscription.module";
 
 @Module({
   providers: [UserService],
@@ -21,6 +22,7 @@ import { ProductModule } from "src/product/product.module";
     ]),
     ConfigModule,
     ProductModule,
+    SubscriptionModule,
   ],
 })
 export class UserModule {}

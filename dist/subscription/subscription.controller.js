@@ -12,34 +12,34 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProductController = void 0;
+exports.SubscriptionController = void 0;
 const common_1 = require("@nestjs/common");
-const product_service_1 = require("./product.service");
-const create_product_dto_1 = require("./dto/create-product.dto");
-const update_product_dto_1 = require("./dto/update-product.dto");
+const subscription_service_1 = require("./subscription.service");
+const subscription_dto_1 = require("./dto/subscription.dto");
 const auth_decorator_1 = require("../auth/decorators/auth.decorator");
 const id_validation_pipe_1 = require("../pipes/id.validation.pipe");
-let ProductController = class ProductController {
-    constructor(productService) {
-        this.productService = productService;
+const update_subscription_dto_1 = require("./dto/update-subscription.dto");
+let SubscriptionController = class SubscriptionController {
+    constructor(subscriptionService) {
+        this.subscriptionService = subscriptionService;
     }
     async create(dto) {
-        return this.productService.create(dto);
+        return this.subscriptionService.create(dto);
     }
-    async updateProduct(id, dto) {
-        return this.productService.updateProduct(id, dto);
+    async updateSubscription(id, dto) {
+        return this.subscriptionService.updateSubscription(id, dto);
     }
-    getProducts(searchTerm) {
-        return this.productService.getAll();
+    async getSubscription(id) {
+        return this.subscriptionService.byId(id);
     }
-    async getCountProducts() {
-        return this.productService.getCount();
+    getSubscriptions(searchTerm) {
+        return this.subscriptionService.getAll();
     }
-    async getProduct(id) {
-        return this.productService.byId(id);
+    async getCountSubscriptions() {
+        return this.subscriptionService.getCount();
     }
     async deleteProduct(id) {
-        return this.productService.delete(id);
+        return this.subscriptionService.delete(id);
     }
 };
 __decorate([
@@ -48,9 +48,9 @@ __decorate([
     (0, auth_decorator_1.Auth)("admin"),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_product_dto_1.CreateProductDto]),
+    __metadata("design:paramtypes", [subscription_dto_1.CreateSubscriptionDto]),
     __metadata("design:returntype", Promise)
-], ProductController.prototype, "create", null);
+], SubscriptionController.prototype, "create", null);
 __decorate([
     (0, common_1.UsePipes)(new common_1.ValidationPipe()),
     (0, common_1.Put)(":id"),
@@ -59,24 +59,9 @@ __decorate([
     __param(0, (0, common_1.Param)("id", id_validation_pipe_1.IdValidationPipe)),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_product_dto_1.UpdateProductDto]),
+    __metadata("design:paramtypes", [String, update_subscription_dto_1.UpdateSubscriptionDto]),
     __metadata("design:returntype", Promise)
-], ProductController.prototype, "updateProduct", null);
-__decorate([
-    (0, common_1.Get)(),
-    (0, auth_decorator_1.Auth)(),
-    __param(0, (0, common_1.Query)("searchTerm")),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], ProductController.prototype, "getProducts", null);
-__decorate([
-    (0, common_1.Get)("count"),
-    (0, auth_decorator_1.Auth)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], ProductController.prototype, "getCountProducts", null);
+], SubscriptionController.prototype, "updateSubscription", null);
 __decorate([
     (0, common_1.Get)(":id"),
     (0, auth_decorator_1.Auth)(),
@@ -84,7 +69,22 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], ProductController.prototype, "getProduct", null);
+], SubscriptionController.prototype, "getSubscription", null);
+__decorate([
+    (0, common_1.Get)(),
+    (0, auth_decorator_1.Auth)(),
+    __param(0, (0, common_1.Query)("searchTerm")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], SubscriptionController.prototype, "getSubscriptions", null);
+__decorate([
+    (0, common_1.Get)("count"),
+    (0, auth_decorator_1.Auth)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], SubscriptionController.prototype, "getCountSubscriptions", null);
 __decorate([
     (0, common_1.Delete)(":id"),
     (0, common_1.HttpCode)(200),
@@ -93,10 +93,10 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], ProductController.prototype, "deleteProduct", null);
-ProductController = __decorate([
-    (0, common_1.Controller)("products"),
-    __metadata("design:paramtypes", [product_service_1.ProductService])
-], ProductController);
-exports.ProductController = ProductController;
-//# sourceMappingURL=product.controller.js.map
+], SubscriptionController.prototype, "deleteProduct", null);
+SubscriptionController = __decorate([
+    (0, common_1.Controller)("subscriptions"),
+    __metadata("design:paramtypes", [subscription_service_1.SubscriptionService])
+], SubscriptionController);
+exports.SubscriptionController = SubscriptionController;
+//# sourceMappingURL=subscription.controller.js.map

@@ -20,14 +20,18 @@ const user_model_1 = require("./user.model");
 const schedule_1 = require("@nestjs/schedule");
 const cron_1 = require("cron");
 const product_service_1 = require("../product/product.service");
+const subscription_service_1 = require("../subscription/subscription.service");
 let UserService = class UserService {
-    constructor(UserModel, scheduler, productService) {
+    constructor(UserModel, scheduler, productService, subscriptionService) {
         this.UserModel = UserModel;
         this.scheduler = scheduler;
         this.productService = productService;
+        this.subscriptionService = subscriptionService;
     }
     async byId(_id) {
-        const user = await this.UserModel.findById(_id).populate("products").exec();
+        const user = await this.UserModel.findById(_id)
+            .populate("products subscriptions")
+            .exec();
         if (!user)
             throw new common_1.NotFoundException("User not found!");
         return user;
@@ -66,18 +70,30 @@ let UserService = class UserService {
             .sort({
             createdAt: "desc",
         })
-            .populate("products")
+            .populate("products subscriptions")
             .exec();
     }
     async addProductsToUser(_id, productIds) {
         const user = await this.UserModel.findById(_id);
         if (!user) {
-            throw new Error("Пользователь не найден");
+            throw new Error("User not found!");
         }
         const productsToAdd = await Promise.all(productIds.map((productId) => this.productService.byId(productId)));
         user.products = user.products
             ? [...user.products, ...productsToAdd]
             : productsToAdd;
+        await user.save();
+        return user;
+    }
+    async addSubscriptionsToUser(_id, subscriptionIds) {
+        const user = await this.UserModel.findById(_id);
+        if (!user) {
+            throw new Error("User not found!");
+        }
+        const subscriptionsToAdd = await Promise.all(subscriptionIds.map((subscriptionId) => this.subscriptionService.byId(subscriptionId)));
+        user.subscriptions = user.subscriptions
+            ? [...user.subscriptions, ...subscriptionsToAdd]
+            : subscriptionsToAdd;
         await user.save();
         return user;
     }
@@ -87,6 +103,15 @@ let UserService = class UserService {
             throw new Error("User not found!");
         }
         user.products = user.products.filter((product) => product.toString() !== productId);
+        await user.save();
+        return user;
+    }
+    async removeSubscriptionFromUser(_id, subscriptionId) {
+        const user = await this.UserModel.findById(_id);
+        if (!user) {
+            throw new Error("User not found!");
+        }
+        user.subscriptions = user.subscriptions.filter((subscription) => subscription.toString() !== subscriptionId);
         await user.save();
         return user;
     }
@@ -119,7 +144,8 @@ UserService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, nestjs_typegoose_1.InjectModel)(user_model_1.UserModel)),
     __metadata("design:paramtypes", [Object, schedule_1.SchedulerRegistry,
-        product_service_1.ProductService])
+        product_service_1.ProductService,
+        subscription_service_1.SubscriptionService])
 ], UserService);
 exports.UserService = UserService;
 //# sourceMappingURL=user.service.js.map

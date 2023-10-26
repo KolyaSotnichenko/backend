@@ -6,35 +6,32 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserModule = void 0;
+exports.SubscriptionModule = void 0;
 const common_1 = require("@nestjs/common");
-const user_service_1 = require("./user.service");
-const user_controller_1 = require("./user.controller");
+const subscription_service_1 = require("./subscription.service");
+const subscription_controller_1 = require("./subscription.controller");
+const subscription_model_1 = require("./subscription.model");
 const config_1 = require("@nestjs/config");
 const nestjs_typegoose_1 = require("nestjs-typegoose");
-const user_model_1 = require("./user.model");
-const product_module_1 = require("../product/product.module");
-const subscription_module_1 = require("../subscription/subscription.module");
-let UserModule = class UserModule {
+let SubscriptionModule = class SubscriptionModule {
 };
-UserModule = __decorate([
+SubscriptionModule = __decorate([
     (0, common_1.Module)({
-        providers: [user_service_1.UserService],
-        controllers: [user_controller_1.UserController],
         imports: [
             nestjs_typegoose_1.TypegooseModule.forFeature([
                 {
-                    typegooseClass: user_model_1.UserModel,
+                    typegooseClass: subscription_model_1.SubscriptionProductModel,
                     schemaOptions: {
-                        collection: "User",
+                        collection: "Subscription",
                     },
                 },
             ]),
             config_1.ConfigModule,
-            product_module_1.ProductModule,
-            subscription_module_1.SubscriptionModule,
         ],
+        controllers: [subscription_controller_1.SubscriptionController],
+        providers: [subscription_service_1.SubscriptionService],
+        exports: [subscription_service_1.SubscriptionService],
     })
-], UserModule);
-exports.UserModule = UserModule;
-//# sourceMappingURL=user.module.js.map
+], SubscriptionModule);
+exports.SubscriptionModule = SubscriptionModule;
+//# sourceMappingURL=subscription.module.js.map

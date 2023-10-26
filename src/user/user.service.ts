@@ -7,20 +7,24 @@ import { UserModel } from "./user.model";
 import { CronExpression, SchedulerRegistry } from "@nestjs/schedule";
 import { CronJob } from "cron";
 import { ProductService } from "src/product/product.service";
+import { SubscriptionService } from "src/subscription/subscription.service";
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectModel(UserModel) private readonly UserModel: ModelType<UserModel>,
     private scheduler: SchedulerRegistry,
-    private readonly productService: ProductService
+    private readonly productService: ProductService,
+    private readonly subscriptionService: SubscriptionService
   ) {}
 
   private banned: UserModel;
   private banRemoved: UserModel;
 
   async byId(_id: string) {
-    const user = await this.UserModel.findById(_id).populate("products").exec();
+    const user = await this.UserModel.findById(_id)
+      .populate("products subscriptions")
+      .exec();
     if (!user) throw new NotFoundException("User not found!");
 
     return user;
@@ -69,7 +73,7 @@ export class UserService {
       .sort({
         createdAt: "desc",
       })
-      .populate("products")
+      .populate("products subscriptions")
       .exec();
   }
 
@@ -80,7 +84,7 @@ export class UserService {
     const user = await this.UserModel.findById(_id);
 
     if (!user) {
-      throw new Error("Пользователь не найден");
+      throw new Error("User not found!");
     }
 
     const productsToAdd = await Promise.all(
@@ -89,6 +93,29 @@ export class UserService {
     user.products = user.products
       ? [...user.products, ...productsToAdd]
       : productsToAdd;
+    await user.save();
+
+    return user;
+  }
+
+  async addSubscriptionsToUser(
+    _id: string,
+    subscriptionIds: string[]
+  ): Promise<UserModel> {
+    const user = await this.UserModel.findById(_id);
+
+    if (!user) {
+      throw new Error("User not found!");
+    }
+
+    const subscriptionsToAdd = await Promise.all(
+      subscriptionIds.map((subscriptionId) =>
+        this.subscriptionService.byId(subscriptionId)
+      )
+    );
+    user.subscriptions = user.subscriptions
+      ? [...user.subscriptions, ...subscriptionsToAdd]
+      : subscriptionsToAdd;
     await user.save();
 
     return user;
@@ -103,6 +130,22 @@ export class UserService {
 
     user.products = user.products.filter(
       (product) => product.toString() !== productId
+    );
+
+    await user.save();
+
+    return user;
+  }
+
+  async removeSubscriptionFromUser(_id: string, subscriptionId: string) {
+    const user = await this.UserModel.findById(_id);
+
+    if (!user) {
+      throw new Error("User not found!");
+    }
+
+    user.subscriptions = user.subscriptions.filter(
+      (subscription) => subscription.toString() !== subscriptionId
     );
 
     await user.save();

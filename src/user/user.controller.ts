@@ -65,6 +65,38 @@ export class UserController {
   }
 
   @UsePipes(new ValidationPipe())
+  @Put("profile/add-subscriptions")
+  @HttpCode(200)
+  @Auth()
+  async addSubscriptionsToUser(
+    @User("_id") _id: string,
+    @Body() body: { subscriptionIds: string[] }
+  ) {
+    const { subscriptionIds } = body;
+
+    console.log(subscriptionIds);
+
+    if (!Array.isArray(subscriptionIds)) {
+      throw new Error("Неверный формат идентификаторов продуктов");
+    }
+
+    return this.userService.addSubscriptionsToUser(_id, subscriptionIds);
+  }
+
+  @UsePipes(new ValidationPipe())
+  @Put("profile/remove-subscription")
+  @HttpCode(200)
+  @Auth()
+  async removeSubscriptionFromUser(
+    @User("_id") _id: string,
+    @Body() body: { subscriptionId: string }
+  ) {
+    const { subscriptionId } = body;
+
+    return this.userService.removeSubscriptionFromUser(_id, subscriptionId);
+  }
+
+  @UsePipes(new ValidationPipe())
   @Put(":id")
   @HttpCode(200)
   @Auth("admin")

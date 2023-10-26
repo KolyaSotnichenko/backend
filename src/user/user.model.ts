@@ -2,6 +2,7 @@ import { Ref, prop } from "@typegoose/typegoose";
 import { Base, TimeStamps } from "@typegoose/typegoose/lib/defaultClasses";
 import { Product } from "src/payments/payments.interface";
 import { ProductModel } from "src/product/product.model";
+import { SubscriptionProductModel } from "src/subscription/subscription.model";
 
 export interface UserModel extends Base {}
 
@@ -20,4 +21,7 @@ export class UserModel extends TimeStamps {
 
   @prop({ ref: () => ProductModel })
   products?: Ref<ProductModel>[];
+
+  @prop({ ref: () => SubscriptionProductModel })
+  subscriptions?: Ref<SubscriptionProductModel>[];
 }

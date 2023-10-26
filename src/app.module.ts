@@ -9,6 +9,7 @@ import { UserModule } from "./user/user.module";
 import { ScheduleModule } from "@nestjs/schedule";
 import { PaymentsModule } from './payments/payments.module';
 import { ProductModule } from './product/product.module';
+import { SubscriptionModule } from './subscription/subscription.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { ProductModule } from './product/product.module';
     ScheduleModule.forRoot(),
     PaymentsModule,
     ProductModule,
+    SubscriptionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

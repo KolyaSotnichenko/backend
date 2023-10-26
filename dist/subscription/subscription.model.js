@@ -9,26 +9,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProductModel = void 0;
+exports.SubscriptionProductModel = void 0;
 const typegoose_1 = require("@typegoose/typegoose");
-const defaultClasses_1 = require("@typegoose/typegoose/lib/defaultClasses");
-class ProductModel extends defaultClasses_1.TimeStamps {
+class SubscriptionProductModel {
 }
 __decorate([
-    (0, typegoose_1.prop)({ unique: true }),
+    (0, typegoose_1.prop)(),
     __metadata("design:type", String)
-], ProductModel.prototype, "title", void 0);
+], SubscriptionProductModel.prototype, "title", void 0);
 __decorate([
     (0, typegoose_1.prop)(),
     __metadata("design:type", String)
-], ProductModel.prototype, "description", void 0);
+], SubscriptionProductModel.prototype, "description", void 0);
 __decorate([
     (0, typegoose_1.prop)(),
     __metadata("design:type", String)
-], ProductModel.prototype, "image", void 0);
+], SubscriptionProductModel.prototype, "image", void 0);
 __decorate([
     (0, typegoose_1.prop)(),
     __metadata("design:type", Number)
-], ProductModel.prototype, "price", void 0);
-exports.ProductModel = ProductModel;
-//# sourceMappingURL=product.model.js.map
+], SubscriptionProductModel.prototype, "price", void 0);
+__decorate([
+    (0, typegoose_1.prop)({ required: true }),
+    __metadata("design:type", Date)
+], SubscriptionProductModel.prototype, "startDate", void 0);
+__decorate([
+    (0, typegoose_1.prop)({ required: true }),
+    __metadata("design:type", Date)
+], SubscriptionProductModel.prototype, "endDate", void 0);
+exports.SubscriptionProductModel = SubscriptionProductModel;
+//# sourceMappingURL=subscription.model.js.map

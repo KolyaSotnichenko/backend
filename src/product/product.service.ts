@@ -41,10 +41,10 @@ export class ProductService {
   }
 
   async byId(_id: string) {
-    const user = await this.ProductModel.findById(_id);
-    if (!user) throw new NotFoundException("Product not found!");
+    const product = await this.ProductModel.findById(_id);
+    if (!product) throw new NotFoundException("Product not found!");
 
-    return user;
+    return product;
   }
 
   async getAll(searchTerm?: string) {

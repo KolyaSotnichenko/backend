@@ -12,31 +12,31 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProductService = void 0;
+exports.SubscriptionService = void 0;
 const common_1 = require("@nestjs/common");
+const subscription_model_1 = require("./subscription.model");
 const nestjs_typegoose_1 = require("nestjs-typegoose");
-const product_model_1 = require("./product.model");
-let ProductService = class ProductService {
-    constructor(ProductModel) {
-        this.ProductModel = ProductModel;
+let SubscriptionService = class SubscriptionService {
+    constructor(SubscriptionProductModel) {
+        this.SubscriptionProductModel = SubscriptionProductModel;
     }
     async create(dto) {
-        const oldProduct = await this.ProductModel.findOne({ title: dto.title });
-        if (oldProduct) {
-            throw new common_1.BadRequestException("Product with this title is already in the system!");
-        }
-        const newProduct = new this.ProductModel(dto);
-        const product = await newProduct.save();
-        return product;
+        const startDate = new Date();
+        const endDate = new Date();
+        endDate.setMonth(endDate.getMonth() + 1);
+        const subscription = new this.SubscriptionProductModel(Object.assign(Object.assign({}, dto), { startDate,
+            endDate }));
+        await subscription.save();
+        return subscription;
     }
-    async updateProduct(_id, dto) {
-        return await this.ProductModel.findByIdAndUpdate(_id, { $set: dto }, { new: true });
+    async updateSubscription(_id, dto) {
+        return await this.SubscriptionProductModel.findByIdAndUpdate(_id, { $set: dto }, { new: true });
     }
     async byId(_id) {
-        const product = await this.ProductModel.findById(_id);
-        if (!product)
-            throw new common_1.NotFoundException("Product not found!");
-        return product;
+        const subscription = await this.SubscriptionProductModel.findById(_id);
+        if (!subscription)
+            throw new common_1.NotFoundException("Subscription not found!");
+        return subscription;
     }
     async getAll(searchTerm) {
         let options = {};
@@ -49,7 +49,7 @@ let ProductService = class ProductService {
                 ],
             };
         }
-        return this.ProductModel.find(options)
+        return this.SubscriptionProductModel.find(options)
             .select("-updatedAt -__v")
             .sort({
             createdAt: "desc",
@@ -57,16 +57,16 @@ let ProductService = class ProductService {
             .exec();
     }
     async getCount() {
-        return this.ProductModel.find().count().exec();
+        return this.SubscriptionProductModel.find().count().exec();
     }
     async delete(id) {
-        return this.ProductModel.findByIdAndDelete(id).exec();
+        return this.SubscriptionProductModel.findByIdAndDelete(id).exec();
     }
 };
-ProductService = __decorate([
+SubscriptionService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, nestjs_typegoose_1.InjectModel)(product_model_1.ProductModel)),
+    __param(0, (0, nestjs_typegoose_1.InjectModel)(subscription_model_1.SubscriptionProductModel)),
     __metadata("design:paramtypes", [Object])
-], ProductService);
-exports.ProductService = ProductService;
-//# sourceMappingURL=product.service.js.map
+], SubscriptionService);
+exports.SubscriptionService = SubscriptionService;
+//# sourceMappingURL=subscription.service.js.map

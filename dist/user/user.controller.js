@@ -40,6 +40,18 @@ let UserController = class UserController {
         const { productId } = body;
         return this.userService.removeProductFromUser(_id, productId);
     }
+    async addSubscriptionsToUser(_id, body) {
+        const { subscriptionIds } = body;
+        console.log(subscriptionIds);
+        if (!Array.isArray(subscriptionIds)) {
+            throw new Error("Неверный формат идентификаторов продуктов");
+        }
+        return this.userService.addSubscriptionsToUser(_id, subscriptionIds);
+    }
+    async removeSubscriptionFromUser(_id, body) {
+        const { subscriptionId } = body;
+        return this.userService.removeSubscriptionFromUser(_id, subscriptionId);
+    }
     async updateUser(id, dto) {
         return this.userService.updateProfile(id, dto);
     }
@@ -100,6 +112,28 @@ __decorate([
     __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "removeProductFromUser", null);
+__decorate([
+    (0, common_1.UsePipes)(new common_1.ValidationPipe()),
+    (0, common_1.Put)("profile/add-subscriptions"),
+    (0, common_1.HttpCode)(200),
+    (0, auth_decorator_1.Auth)(),
+    __param(0, (0, user_decorator_1.User)("_id")),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "addSubscriptionsToUser", null);
+__decorate([
+    (0, common_1.UsePipes)(new common_1.ValidationPipe()),
+    (0, common_1.Put)("profile/remove-subscription"),
+    (0, common_1.HttpCode)(200),
+    (0, auth_decorator_1.Auth)(),
+    __param(0, (0, user_decorator_1.User)("_id")),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "removeSubscriptionFromUser", null);
 __decorate([
     (0, common_1.UsePipes)(new common_1.ValidationPipe()),
     (0, common_1.Put)(":id"),

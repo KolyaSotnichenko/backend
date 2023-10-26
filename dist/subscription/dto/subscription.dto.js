@@ -9,26 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProductModel = void 0;
-const typegoose_1 = require("@typegoose/typegoose");
-const defaultClasses_1 = require("@typegoose/typegoose/lib/defaultClasses");
-class ProductModel extends defaultClasses_1.TimeStamps {
+exports.CreateSubscriptionDto = void 0;
+const class_validator_1 = require("class-validator");
+class CreateSubscriptionDto {
 }
 __decorate([
-    (0, typegoose_1.prop)({ unique: true }),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], ProductModel.prototype, "title", void 0);
+], CreateSubscriptionDto.prototype, "title", void 0);
 __decorate([
-    (0, typegoose_1.prop)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], ProductModel.prototype, "description", void 0);
+], CreateSubscriptionDto.prototype, "description", void 0);
 __decorate([
-    (0, typegoose_1.prop)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], ProductModel.prototype, "image", void 0);
+], CreateSubscriptionDto.prototype, "image", void 0);
 __decorate([
-    (0, typegoose_1.prop)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", Number)
-], ProductModel.prototype, "price", void 0);
-exports.ProductModel = ProductModel;
-//# sourceMappingURL=product.model.js.map
+], CreateSubscriptionDto.prototype, "price", void 0);
+exports.CreateSubscriptionDto = CreateSubscriptionDto;
+//# sourceMappingURL=subscription.dto.js.map

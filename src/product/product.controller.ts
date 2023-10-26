@@ -17,7 +17,6 @@ import { CreateProductDto } from "./dto/create-product.dto";
 import { UpdateProductDto } from "./dto/update-product.dto";
 import { Auth } from "src/auth/decorators/auth.decorator";
 import { IdValidationPipe } from "src/pipes/id.validation.pipe";
-import { User } from "src/user/decorators/user.decorator";
 
 @Controller("products")
 export class ProductController {
@@ -34,7 +33,7 @@ export class ProductController {
   @Put(":id")
   @HttpCode(200)
   @Auth("admin")
-  async updateUser(
+  async updateProduct(
     @Param("id", IdValidationPipe) id: string,
     @Body() dto: UpdateProductDto
   ) {
