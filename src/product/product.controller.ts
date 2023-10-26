@@ -42,7 +42,7 @@ export class ProductController {
   }
 
   @Get()
-  @Auth("admin")
+  @Auth()
   getProducts(@Query("searchTerm") searchTerm?: string) {
     return this.productService.getAll();
   }

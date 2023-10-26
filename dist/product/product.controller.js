@@ -64,7 +64,7 @@ __decorate([
 ], ProductController.prototype, "updateUser", null);
 __decorate([
     (0, common_1.Get)(),
-    (0, auth_decorator_1.Auth)("admin"),
+    (0, auth_decorator_1.Auth)(),
     __param(0, (0, common_1.Query)("searchTerm")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
