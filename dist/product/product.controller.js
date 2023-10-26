@@ -72,14 +72,14 @@ __decorate([
 ], ProductController.prototype, "getProducts", null);
 __decorate([
     (0, common_1.Get)("count"),
-    (0, auth_decorator_1.Auth)("admin"),
+    (0, auth_decorator_1.Auth)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "getCountProducts", null);
 __decorate([
     (0, common_1.Get)(":id"),
-    (0, auth_decorator_1.Auth)("admin"),
+    (0, auth_decorator_1.Auth)(),
     __param(0, (0, common_1.Param)("id", id_validation_pipe_1.IdValidationPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),

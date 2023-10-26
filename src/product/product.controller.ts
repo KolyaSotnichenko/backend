@@ -48,13 +48,13 @@ export class ProductController {
   }
 
   @Get("count")
-  @Auth("admin")
+  @Auth()
   async getCountProducts() {
     return this.productService.getCount();
   }
 
   @Get(":id")
-  @Auth("admin")
+  @Auth()
   async getProduct(@Param("id", IdValidationPipe) id: string) {
     return this.productService.byId(id);
   }
