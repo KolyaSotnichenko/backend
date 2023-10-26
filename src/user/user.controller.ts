@@ -52,6 +52,19 @@ export class UserController {
   }
 
   @UsePipes(new ValidationPipe())
+  @Put("profile/remove-product")
+  @HttpCode(200)
+  @Auth()
+  async removeProductFromUser(
+    @User("_id") _id: string,
+    @Body() body: { productId: string }
+  ) {
+    const { productId } = body;
+
+    return this.userService.removeProductFromUser(_id, productId);
+  }
+
+  @UsePipes(new ValidationPipe())
   @Put(":id")
   @HttpCode(200)
   @Auth("admin")

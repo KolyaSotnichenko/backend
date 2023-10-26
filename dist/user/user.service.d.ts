@@ -44,6 +44,9 @@ export declare class UserService {
         _id: import("mongoose").Types.ObjectId;
     }> & import("@typegoose/typegoose/lib/types").IObjectWithTypegooseFunction, never>, never>[]>;
     addProductsToUser(_id: string, productIds: string[]): Promise<UserModel>;
+    removeProductFromUser(_id: string, productId: string): Promise<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, import("@typegoose/typegoose/lib/types").DocumentType<UserModel, import("@typegoose/typegoose/lib/types").BeAnObject>> & Omit<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, UserModel> & UserModel & Required<{
+        _id: import("mongoose").Types.ObjectId;
+    }> & import("@typegoose/typegoose/lib/types").IObjectWithTypegooseFunction, never>>;
     delete(id: string): Promise<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, import("@typegoose/typegoose/lib/types").DocumentType<UserModel, import("@typegoose/typegoose/lib/types").BeAnObject>> & Omit<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, UserModel> & UserModel & Required<{
         _id: import("mongoose").Types.ObjectId;
     }> & import("@typegoose/typegoose/lib/types").IObjectWithTypegooseFunction, never>>;

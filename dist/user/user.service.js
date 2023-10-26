@@ -81,6 +81,15 @@ let UserService = class UserService {
         await user.save();
         return user;
     }
+    async removeProductFromUser(_id, productId) {
+        const user = await this.UserModel.findById(_id);
+        if (!user) {
+            throw new Error("User not found!");
+        }
+        user.products = user.products.filter((product) => product.toString() !== productId);
+        await user.save();
+        return user;
+    }
     async delete(id) {
         return this.UserModel.findByIdAndDelete(id).exec();
     }

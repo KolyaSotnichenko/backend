@@ -94,6 +94,22 @@ export class UserService {
     return user;
   }
 
+  async removeProductFromUser(_id: string, productId: string) {
+    const user = await this.UserModel.findById(_id);
+
+    if (!user) {
+      throw new Error("User not found!");
+    }
+
+    user.products = user.products.filter(
+      (product) => product.toString() !== productId
+    );
+
+    await user.save();
+
+    return user;
+  }
+
   async delete(id: string) {
     //перевірка на борги
     return this.UserModel.findByIdAndDelete(id).exec();

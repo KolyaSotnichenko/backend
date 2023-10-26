@@ -35,6 +35,11 @@ export declare class UserController {
     addProductsToUser(_id: string, body: {
         productIds: string[];
     }): Promise<import("./user.model").UserModel>;
+    removeProductFromUser(_id: string, body: {
+        productId: string;
+    }): Promise<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, import("@typegoose/typegoose").DocumentType<import("./user.model").UserModel, import("@typegoose/typegoose/lib/types").BeAnObject>> & Omit<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, import("./user.model").UserModel> & import("./user.model").UserModel & Required<{
+        _id: import("mongoose").Types.ObjectId;
+    }> & import("@typegoose/typegoose/lib/types").IObjectWithTypegooseFunction, never>>;
     updateUser(id: string, dto: UpdateUserDto): Promise<void>;
     getCountUsers(): Promise<number>;
     getUsers(searchTerm?: string): Promise<Omit<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, import("@typegoose/typegoose").DocumentType<import("./user.model").UserModel, import("@typegoose/typegoose/lib/types").BeAnObject>> & Omit<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, import("./user.model").UserModel> & import("./user.model").UserModel & Required<{

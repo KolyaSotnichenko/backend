@@ -36,6 +36,10 @@ let UserController = class UserController {
         }
         return this.userService.addProductsToUser(_id, productIds);
     }
+    async removeProductFromUser(_id, body) {
+        const { productId } = body;
+        return this.userService.removeProductFromUser(_id, productId);
+    }
     async updateUser(id, dto) {
         return this.userService.updateProfile(id, dto);
     }
@@ -85,6 +89,17 @@ __decorate([
     __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "addProductsToUser", null);
+__decorate([
+    (0, common_1.UsePipes)(new common_1.ValidationPipe()),
+    (0, common_1.Put)("profile/remove-product"),
+    (0, common_1.HttpCode)(200),
+    (0, auth_decorator_1.Auth)(),
+    __param(0, (0, user_decorator_1.User)("_id")),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "removeProductFromUser", null);
 __decorate([
     (0, common_1.UsePipes)(new common_1.ValidationPipe()),
     (0, common_1.Put)(":id"),
