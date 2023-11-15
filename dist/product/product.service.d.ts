@@ -33,12 +33,10 @@ export declare class ProductService {
     create(dto: CreateProductDto): Promise<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, import("@typegoose/typegoose/lib/types").DocumentType<ProductModel, import("@typegoose/typegoose/lib/types").BeAnObject>> & Omit<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, ProductModel> & ProductModel & Required<{
         _id: import("mongoose").Types.ObjectId;
     }> & import("@typegoose/typegoose/lib/types").IObjectWithTypegooseFunction, never>>;
-    updateProduct(_id: string, dto: UpdateProductDto): Promise<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, import("@typegoose/typegoose/lib/types").DocumentType<ProductModel, import("@typegoose/typegoose/lib/types").BeAnObject>> & Omit<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, ProductModel> & ProductModel & Required<{
-        _id: import("mongoose").Types.ObjectId;
-    }> & import("@typegoose/typegoose/lib/types").IObjectWithTypegooseFunction, never>>;
     byId(_id: string): Promise<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, import("@typegoose/typegoose/lib/types").DocumentType<ProductModel, import("@typegoose/typegoose/lib/types").BeAnObject>> & Omit<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, ProductModel> & ProductModel & Required<{
         _id: import("mongoose").Types.ObjectId;
     }> & import("@typegoose/typegoose/lib/types").IObjectWithTypegooseFunction, never>>;
+    updateProduct(_id: string, dto: UpdateProductDto): Promise<void>;
     getAll(searchTerm?: string): Promise<(import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, import("@typegoose/typegoose/lib/types").DocumentType<ProductModel, import("@typegoose/typegoose/lib/types").BeAnObject>> & Omit<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, ProductModel> & ProductModel & Required<{
         _id: import("mongoose").Types.ObjectId;
     }> & import("@typegoose/typegoose/lib/types").IObjectWithTypegooseFunction, never>)[]>;

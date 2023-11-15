@@ -21,24 +21,21 @@ let SubscriptionService = class SubscriptionService {
         this.SubscriptionProductModel = SubscriptionProductModel;
     }
     async create(dto) {
-        const startDate = new Date();
-        const endDate = new Date();
-        if (dto.period === "1 month") {
-            endDate.setMonth(endDate.getMonth() + 1);
-        }
-        if (dto.period === "3 month") {
-            endDate.setMonth(endDate.getMonth() + 3);
-        }
-        if (dto.period === "1 year") {
-            endDate.setFullYear(endDate.getFullYear() + 1);
-        }
-        const subscription = new this.SubscriptionProductModel(Object.assign(Object.assign({}, dto), { startDate,
-            endDate }));
+        const subscription = new this.SubscriptionProductModel(Object.assign({}, dto));
         await subscription.save();
         return subscription;
     }
     async updateSubscription(_id, dto) {
-        return await this.SubscriptionProductModel.findByIdAndUpdate(_id, { $set: dto }, { new: true });
+        const subscription = await this.byId(_id);
+        subscription.title = dto.title ? dto.title : subscription.title;
+        subscription.description = dto.description
+            ? dto.description
+            : subscription.description;
+        subscription.image = dto.image ? dto.image : subscription.image;
+        subscription.price = dto.price ? dto.price : subscription.price;
+        subscription.period = dto.period ? dto.period : subscription.period;
+        await subscription.save();
+        return;
     }
     async byId(_id) {
         const subscription = await this.SubscriptionProductModel.findById(_id);

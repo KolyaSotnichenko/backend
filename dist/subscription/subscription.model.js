@@ -27,15 +27,11 @@ __decorate([
 ], SubscriptionProductModel.prototype, "image", void 0);
 __decorate([
     (0, typegoose_1.prop)(),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], SubscriptionProductModel.prototype, "price", void 0);
 __decorate([
-    (0, typegoose_1.prop)({ required: true }),
-    __metadata("design:type", Date)
-], SubscriptionProductModel.prototype, "startDate", void 0);
-__decorate([
-    (0, typegoose_1.prop)({ required: true }),
-    __metadata("design:type", Date)
-], SubscriptionProductModel.prototype, "endDate", void 0);
+    (0, typegoose_1.prop)(),
+    __metadata("design:type", String)
+], SubscriptionProductModel.prototype, "period", void 0);
 exports.SubscriptionProductModel = SubscriptionProductModel;
 //# sourceMappingURL=subscription.model.js.map

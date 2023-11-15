@@ -7,6 +7,9 @@ export interface UserModel extends Base {
 export declare class UserModel extends TimeStamps {
     email: string;
     password: string;
+    address: string;
+    organization: string;
+    currency: string;
     isAdmin?: boolean;
     isActive: boolean;
     products?: Ref<ProductModel>[];

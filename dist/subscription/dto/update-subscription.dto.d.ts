@@ -3,4 +3,5 @@ export declare class UpdateSubscriptionDto {
     description?: string;
     image?: string;
     price?: string;
+    period?: string;
 }

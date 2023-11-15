@@ -13,25 +13,25 @@ export class SubscriptionService {
   ) {}
 
   async create(dto: CreateSubscriptionDto) {
-    const startDate = new Date();
-    const endDate = new Date();
+    // const startDate = new Date();
+    // const endDate = new Date();
 
-    if (dto.period === "1 month") {
-      endDate.setMonth(endDate.getMonth() + 1);
-    }
+    // if (dto.period === "1 month") {
+    //   endDate.setMonth(endDate.getMonth() + 1);
+    // }
 
-    if (dto.period === "3 month") {
-      endDate.setMonth(endDate.getMonth() + 3);
-    }
+    // if (dto.period === "3 month") {
+    //   endDate.setMonth(endDate.getMonth() + 3);
+    // }
 
-    if (dto.period === "1 year") {
-      endDate.setFullYear(endDate.getFullYear() + 1);
-    }
+    // if (dto.period === "1 year") {
+    //   endDate.setFullYear(endDate.getFullYear() + 1);
+    // }
 
     const subscription = new this.SubscriptionProductModel({
       ...dto,
-      startDate,
-      endDate,
+      // startDate,
+      // endDate,
     });
     await subscription.save();
 
@@ -39,11 +39,19 @@ export class SubscriptionService {
   }
 
   async updateSubscription(_id: string, dto: UpdateSubscriptionDto) {
-    return await this.SubscriptionProductModel.findByIdAndUpdate(
-      _id,
-      { $set: dto },
-      { new: true }
-    );
+    const subscription = await this.byId(_id);
+
+    subscription.title = dto.title ? dto.title : subscription.title;
+    subscription.description = dto.description
+      ? dto.description
+      : subscription.description;
+    subscription.image = dto.image ? dto.image : subscription.image;
+    subscription.price = dto.price ? dto.price : subscription.price;
+    subscription.period = dto.period ? dto.period : subscription.period;
+
+    await subscription.save();
+
+    return;
   }
 
   async byId(_id: string) {

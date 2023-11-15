@@ -25,6 +25,18 @@ __decorate([
     __metadata("design:type", String)
 ], UserModel.prototype, "password", void 0);
 __decorate([
+    (0, typegoose_1.prop)(),
+    __metadata("design:type", String)
+], UserModel.prototype, "address", void 0);
+__decorate([
+    (0, typegoose_1.prop)(),
+    __metadata("design:type", String)
+], UserModel.prototype, "organization", void 0);
+__decorate([
+    (0, typegoose_1.prop)(),
+    __metadata("design:type", String)
+], UserModel.prototype, "currency", void 0);
+__decorate([
     (0, typegoose_1.prop)({ default: false }),
     __metadata("design:type", Boolean)
 ], UserModel.prototype, "isAdmin", void 0);

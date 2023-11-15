@@ -34,11 +34,7 @@ export declare class SubscriptionController {
     } & import("@typegoose/typegoose/lib/types").IObjectWithTypegooseFunction & Required<{
         _id: import("mongoose").Types.ObjectId;
     }>, never>>;
-    updateSubscription(id: string, dto: UpdateSubscriptionDto): Promise<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, import("@typegoose/typegoose").DocumentType<import("./subscription.model").SubscriptionProductModel, import("@typegoose/typegoose/lib/types").BeAnObject>> & Omit<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, import("./subscription.model").SubscriptionProductModel> & import("./subscription.model").SubscriptionProductModel & {
-        _id: import("mongoose").Types.ObjectId;
-    } & import("@typegoose/typegoose/lib/types").IObjectWithTypegooseFunction & Required<{
-        _id: import("mongoose").Types.ObjectId;
-    }>, never>>;
+    updateSubscription(id: string, dto: UpdateSubscriptionDto): Promise<void>;
     getSubscription(id: string): Promise<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, import("@typegoose/typegoose").DocumentType<import("./subscription.model").SubscriptionProductModel, import("@typegoose/typegoose/lib/types").BeAnObject>> & Omit<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, import("./subscription.model").SubscriptionProductModel> & import("./subscription.model").SubscriptionProductModel & {
         _id: import("mongoose").Types.ObjectId;
     } & import("@typegoose/typegoose/lib/types").IObjectWithTypegooseFunction & Required<{

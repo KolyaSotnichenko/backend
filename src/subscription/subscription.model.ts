@@ -11,11 +11,8 @@ export class SubscriptionProductModel {
   image: string;
 
   @prop()
-  price: number;
+  price: string;
 
-  @prop({ required: true })
-  startDate: Date;
-
-  @prop({ required: true })
-  endDate: Date;
+  @prop()
+  period: string;
 }

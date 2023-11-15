@@ -12,6 +12,15 @@ export class UserModel extends TimeStamps {
   @prop()
   password: string;
 
+  @prop()
+  address: string;
+
+  @prop()
+  organization: string;
+
+  @prop()
+  currency: string;
+
   @prop({ default: false })
   isAdmin?: boolean;
 

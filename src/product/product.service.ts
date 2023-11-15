@@ -32,19 +32,26 @@ export class ProductService {
     return product;
   }
 
-  async updateProduct(_id: string, dto: UpdateProductDto) {
-    return await this.ProductModel.findByIdAndUpdate(
-      _id,
-      { $set: dto },
-      { new: true }
-    );
-  }
-
   async byId(_id: string) {
     const product = await this.ProductModel.findById(_id);
     if (!product) throw new NotFoundException("Product not found!");
 
     return product;
+  }
+
+  async updateProduct(_id: string, dto: UpdateProductDto) {
+    const product = await this.byId(_id);
+
+    product.title = dto.title ? dto.title : product.title;
+    product.description = dto.description
+      ? dto.description
+      : product.description;
+    product.image = dto.image ? dto.image : product.image;
+    product.price = dto.price ? dto.price : product.price;
+
+    await product.save();
+
+    return;
   }
 
   async getAll(searchTerm?: string) {

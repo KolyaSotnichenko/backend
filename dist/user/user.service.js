@@ -45,7 +45,10 @@ let UserService = class UserService {
             const salt = await (0, bcryptjs_1.genSalt)(10);
             user.password = await (0, bcryptjs_1.hash)(dto.password, salt);
         }
-        user.email = dto.email;
+        user.email = dto.email ? dto.email : user.email;
+        user.address = dto.address ? dto.address : user.address;
+        user.organization = dto.organization ? dto.organization : user.organization;
+        user.currency = dto.currency ? dto.currency : user.currency;
         if (dto.isAdmin || dto.isAdmin === false)
             user.isAdmin = dto.isAdmin;
         await user.save();
