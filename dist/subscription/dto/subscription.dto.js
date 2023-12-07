@@ -26,8 +26,8 @@ __decorate([
     __metadata("design:type", String)
 ], CreateSubscriptionDto.prototype, "image", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", Number)
+    (0, class_validator_1.IsObject)(),
+    __metadata("design:type", Object)
 ], CreateSubscriptionDto.prototype, "price", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),

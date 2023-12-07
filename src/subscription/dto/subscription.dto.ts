@@ -1,4 +1,4 @@
-import { IsString } from "class-validator";
+import { IsObject, IsString } from "class-validator";
 
 export class CreateSubscriptionDto {
   @IsString()
@@ -10,8 +10,8 @@ export class CreateSubscriptionDto {
   @IsString()
   image: string;
 
-  @IsString()
-  price: number;
+  @IsObject()
+  price: Object;
 
   @IsString()
   period: string;

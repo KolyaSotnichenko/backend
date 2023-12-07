@@ -5,5 +5,5 @@ export class UpdateProductDto {
 
   image?: string;
 
-  price?: string;
+  price?: Object;
 }

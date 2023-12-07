@@ -9,25 +9,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateProductDto = void 0;
+exports.CreateInvoiceDto = void 0;
 const class_validator_1 = require("class-validator");
-class CreateProductDto {
+class CreateInvoiceDto {
 }
 __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], CreateProductDto.prototype, "title", void 0);
+], CreateInvoiceDto.prototype, "invoiceNumber", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], CreateProductDto.prototype, "description", void 0);
+], CreateInvoiceDto.prototype, "user", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.IsString)({ each: true }),
+    __metadata("design:type", Array)
+], CreateInvoiceDto.prototype, "products", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.IsString)({ each: true }),
+    __metadata("design:type", Array)
+], CreateInvoiceDto.prototype, "subscriptions", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], CreateProductDto.prototype, "image", void 0);
+], CreateInvoiceDto.prototype, "total", void 0);
 __decorate([
-    (0, class_validator_1.IsObject)(),
-    __metadata("design:type", Object)
-], CreateProductDto.prototype, "price", void 0);
-exports.CreateProductDto = CreateProductDto;
-//# sourceMappingURL=create-product.dto.js.map
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.IsObject)({ each: true }),
+    __metadata("design:type", Array)
+], CreateInvoiceDto.prototype, "counts", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateInvoiceDto.prototype, "currency", void 0);
+exports.CreateInvoiceDto = CreateInvoiceDto;
+//# sourceMappingURL=create-invoice.dto.js.map

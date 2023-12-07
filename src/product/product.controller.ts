@@ -41,19 +41,16 @@ export class ProductController {
   }
 
   @Get()
-  @Auth()
   getProducts(@Query("searchTerm") searchTerm?: string) {
     return this.productService.getAll();
   }
 
   @Get("count")
-  @Auth()
   async getCountProducts() {
     return this.productService.getCount();
   }
 
   @Get(":id")
-  @Auth()
   async getProduct(@Param("id", IdValidationPipe) id: string) {
     return this.productService.byId(id);
   }

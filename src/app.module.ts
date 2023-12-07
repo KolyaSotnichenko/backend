@@ -7,9 +7,10 @@ import { getMongoDbConfig } from "./config/mongo.config";
 import { AuthModule } from "./auth/auth.module";
 import { UserModule } from "./user/user.module";
 import { ScheduleModule } from "@nestjs/schedule";
-import { PaymentsModule } from './payments/payments.module';
-import { ProductModule } from './product/product.module';
-import { SubscriptionModule } from './subscription/subscription.module';
+import { PaymentsModule } from "./payments/payments.module";
+import { ProductModule } from "./product/product.module";
+import { SubscriptionModule } from "./subscription/subscription.module";
+import { InvoiceModule } from './invoice/invoice.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { SubscriptionModule } from './subscription/subscription.module';
     PaymentsModule,
     ProductModule,
     SubscriptionModule,
+    InvoiceModule,
   ],
   controllers: [AppController],
   providers: [AppService],

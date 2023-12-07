@@ -13,25 +13,8 @@ export class SubscriptionService {
   ) {}
 
   async create(dto: CreateSubscriptionDto) {
-    // const startDate = new Date();
-    // const endDate = new Date();
-
-    // if (dto.period === "1 month") {
-    //   endDate.setMonth(endDate.getMonth() + 1);
-    // }
-
-    // if (dto.period === "3 month") {
-    //   endDate.setMonth(endDate.getMonth() + 3);
-    // }
-
-    // if (dto.period === "1 year") {
-    //   endDate.setFullYear(endDate.getFullYear() + 1);
-    // }
-
     const subscription = new this.SubscriptionProductModel({
       ...dto,
-      // startDate,
-      // endDate,
     });
     await subscription.save();
 

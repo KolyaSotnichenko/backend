@@ -5,7 +5,7 @@ export class UpdateSubscriptionDto {
 
   image?: string;
 
-  price?: string;
+  price?: Object;
 
   period?: string;
 }

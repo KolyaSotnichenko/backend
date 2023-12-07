@@ -28,7 +28,7 @@ __decorate([
 ], ProductModel.prototype, "image", void 0);
 __decorate([
     (0, typegoose_1.prop)(),
-    __metadata("design:type", String)
+    __metadata("design:type", Object)
 ], ProductModel.prototype, "price", void 0);
 exports.ProductModel = ProductModel;
 //# sourceMappingURL=product.model.js.map

@@ -11,7 +11,7 @@ export class SubscriptionProductModel {
   image: string;
 
   @prop()
-  price: string;
+  price: Object;
 
   @prop()
   period: string;

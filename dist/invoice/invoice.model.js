@@ -9,29 +9,41 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SubscriptionProductModel = void 0;
+exports.InvoiceModel = void 0;
 const typegoose_1 = require("@typegoose/typegoose");
-class SubscriptionProductModel {
+const defaultClasses_1 = require("@typegoose/typegoose/lib/defaultClasses");
+const product_model_1 = require("../product/product.model");
+const subscription_model_1 = require("../subscription/subscription.model");
+const user_model_1 = require("../user/user.model");
+class InvoiceModel extends defaultClasses_1.TimeStamps {
 }
 __decorate([
     (0, typegoose_1.prop)(),
     __metadata("design:type", String)
-], SubscriptionProductModel.prototype, "title", void 0);
+], InvoiceModel.prototype, "invoiceNumber", void 0);
 __decorate([
-    (0, typegoose_1.prop)(),
-    __metadata("design:type", String)
-], SubscriptionProductModel.prototype, "description", void 0);
-__decorate([
-    (0, typegoose_1.prop)(),
-    __metadata("design:type", String)
-], SubscriptionProductModel.prototype, "image", void 0);
-__decorate([
-    (0, typegoose_1.prop)(),
+    (0, typegoose_1.prop)({ ref: () => user_model_1.UserModel }),
     __metadata("design:type", Object)
-], SubscriptionProductModel.prototype, "price", void 0);
+], InvoiceModel.prototype, "user", void 0);
+__decorate([
+    (0, typegoose_1.prop)({ ref: () => product_model_1.ProductModel }),
+    __metadata("design:type", Array)
+], InvoiceModel.prototype, "products", void 0);
+__decorate([
+    (0, typegoose_1.prop)({ ref: () => subscription_model_1.SubscriptionProductModel }),
+    __metadata("design:type", Array)
+], InvoiceModel.prototype, "subscriptions", void 0);
 __decorate([
     (0, typegoose_1.prop)(),
     __metadata("design:type", String)
-], SubscriptionProductModel.prototype, "period", void 0);
-exports.SubscriptionProductModel = SubscriptionProductModel;
-//# sourceMappingURL=subscription.model.js.map
+], InvoiceModel.prototype, "total", void 0);
+__decorate([
+    (0, typegoose_1.prop)(),
+    __metadata("design:type", Array)
+], InvoiceModel.prototype, "counts", void 0);
+__decorate([
+    (0, typegoose_1.prop)(),
+    __metadata("design:type", String)
+], InvoiceModel.prototype, "currency", void 0);
+exports.InvoiceModel = InvoiceModel;
+//# sourceMappingURL=invoice.model.js.map

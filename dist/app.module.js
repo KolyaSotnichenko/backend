@@ -19,6 +19,7 @@ const schedule_1 = require("@nestjs/schedule");
 const payments_module_1 = require("./payments/payments.module");
 const product_module_1 = require("./product/product.module");
 const subscription_module_1 = require("./subscription/subscription.module");
+const invoice_module_1 = require("./invoice/invoice.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -36,6 +37,7 @@ AppModule = __decorate([
             payments_module_1.PaymentsModule,
             product_module_1.ProductModule,
             subscription_module_1.SubscriptionModule,
+            invoice_module_1.InvoiceModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
