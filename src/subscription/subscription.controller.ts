@@ -60,7 +60,7 @@ export class SubscriptionController {
   @Delete(":id")
   @HttpCode(200)
   @Auth("admin")
-  async deleteProduct(@Param("id", IdValidationPipe) id: string) {
+  async deleteSubscription(@Param("id", IdValidationPipe) id: string) {
     return this.subscriptionService.delete(id);
   }
 }

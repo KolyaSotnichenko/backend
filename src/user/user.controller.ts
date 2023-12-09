@@ -20,6 +20,7 @@ import { IdValidationPipe } from "src/pipes/id.validation.pipe";
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
+  @UsePipes(new ValidationPipe())
   @Get("profile")
   @Auth()
   async getProfile(@User("_id") _id: string) {

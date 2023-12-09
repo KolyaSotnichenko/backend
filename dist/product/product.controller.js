@@ -64,6 +64,7 @@ __decorate([
 ], ProductController.prototype, "updateProduct", null);
 __decorate([
     (0, common_1.Get)(),
+    (0, auth_decorator_1.Auth)(),
     __param(0, (0, common_1.Query)("searchTerm")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -71,6 +72,7 @@ __decorate([
 ], ProductController.prototype, "getProducts", null);
 __decorate([
     (0, common_1.Get)("count"),
+    (0, auth_decorator_1.Auth)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)

@@ -46,7 +46,7 @@ export declare class SubscriptionController {
         _id: import("mongoose").Types.ObjectId;
     }>, never>)[]>;
     getCountSubscriptions(): Promise<number>;
-    deleteProduct(id: string): Promise<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, import("@typegoose/typegoose").DocumentType<import("./subscription.model").SubscriptionProductModel, import("@typegoose/typegoose/lib/types").BeAnObject>> & Omit<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, import("./subscription.model").SubscriptionProductModel> & import("./subscription.model").SubscriptionProductModel & {
+    deleteSubscription(id: string): Promise<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, import("@typegoose/typegoose").DocumentType<import("./subscription.model").SubscriptionProductModel, import("@typegoose/typegoose/lib/types").BeAnObject>> & Omit<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, import("./subscription.model").SubscriptionProductModel> & import("./subscription.model").SubscriptionProductModel & {
         _id: import("mongoose").Types.ObjectId;
     } & import("@typegoose/typegoose/lib/types").IObjectWithTypegooseFunction & Required<{
         _id: import("mongoose").Types.ObjectId;

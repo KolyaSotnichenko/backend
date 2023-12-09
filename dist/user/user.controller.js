@@ -72,6 +72,7 @@ let UserController = class UserController {
     }
 };
 __decorate([
+    (0, common_1.UsePipes)(new common_1.ValidationPipe()),
     (0, common_1.Get)("profile"),
     (0, auth_decorator_1.Auth)(),
     __param(0, (0, user_decorator_1.User)("_id")),

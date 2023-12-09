@@ -38,7 +38,7 @@ let SubscriptionController = class SubscriptionController {
     async getCountSubscriptions() {
         return this.subscriptionService.getCount();
     }
-    async deleteProduct(id) {
+    async deleteSubscription(id) {
         return this.subscriptionService.delete(id);
     }
 };
@@ -93,7 +93,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], SubscriptionController.prototype, "deleteProduct", null);
+], SubscriptionController.prototype, "deleteSubscription", null);
 SubscriptionController = __decorate([
     (0, common_1.Controller)("subscriptions"),
     __metadata("design:paramtypes", [subscription_service_1.SubscriptionService])
