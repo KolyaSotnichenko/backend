@@ -51,6 +51,8 @@ let UserService = class UserService {
         user.currency = dto.currency ? dto.currency : user.currency;
         if (dto.isAdmin || dto.isAdmin === false)
             user.isAdmin = dto.isAdmin;
+        if (dto.isActive || dto.isActive === false)
+            user.isActive = dto.isActive;
         await user.save();
         return;
     }
