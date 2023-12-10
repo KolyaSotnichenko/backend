@@ -100,6 +100,7 @@ export class AuthService {
       _id: user._id,
       email: user.email,
       isAdmin: user.isAdmin,
+      isActive: user.isActive,
     };
   }
 }

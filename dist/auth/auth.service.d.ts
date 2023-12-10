@@ -39,6 +39,7 @@ export declare class AuthService {
             _id: import("mongoose").Types.ObjectId;
             email: string;
             isAdmin: boolean;
+            isActive: boolean;
         };
     }>;
     getNewTokens({ refreshToken }: RefreshTokenDto): Promise<{
@@ -48,6 +49,7 @@ export declare class AuthService {
             _id: import("mongoose").Types.ObjectId;
             email: string;
             isAdmin: boolean;
+            isActive: boolean;
         };
     }>;
     register(dto: AuthDto): Promise<{
@@ -57,6 +59,7 @@ export declare class AuthService {
             _id: import("mongoose").Types.ObjectId;
             email: string;
             isAdmin: boolean;
+            isActive: boolean;
         };
     }>;
     validateUser(dto: AuthDto): Promise<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, import("@typegoose/typegoose/lib/types").DocumentType<UserModel, import("@typegoose/typegoose/lib/types").BeAnObject>> & Omit<import("mongoose").Document<unknown, import("@typegoose/typegoose/lib/types").BeAnObject, UserModel> & UserModel & Required<{
@@ -70,5 +73,6 @@ export declare class AuthService {
         _id: import("mongoose").Types.ObjectId;
         email: string;
         isAdmin: boolean;
+        isActive: boolean;
     };
 }
