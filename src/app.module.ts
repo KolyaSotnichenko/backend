@@ -11,6 +11,7 @@ import { PaymentsModule } from "./payments/payments.module";
 import { ProductModule } from "./product/product.module";
 import { SubscriptionModule } from "./subscription/subscription.module";
 import { InvoiceModule } from './invoice/invoice.module';
+import { FileModule } from './file/file.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { InvoiceModule } from './invoice/invoice.module';
     ProductModule,
     SubscriptionModule,
     InvoiceModule,
+    FileModule,
   ],
   controllers: [AppController],
   providers: [AppService],
